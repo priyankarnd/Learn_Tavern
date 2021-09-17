@@ -1,0 +1,23 @@
+---
+test_name: Using request variables ex02
+stages:
+  - name: Create a resource, verify response json using request variables
+    request:
+      url: https://jsonplaceholder.typicode.com/posts
+      method: POST
+      json:
+        title: foo
+        body: bar
+        userId: 1
+      headers:
+        content-type: application/json; charset=UTF-8
+
+    response:
+      status_code:
+        - 201
+#        - 503
+      json:
+        title: "{tavern.request_vars.json.title}"
+        body: "{tavern.request_vars.json.body}"
+        userId: !int "{tavern.request_vars.json.userId}"
+        id: 101

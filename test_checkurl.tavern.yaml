@@ -1,0 +1,11 @@
+---
+test_name: Get location for a zip code
+
+stages:
+  - name: Chcek that http status code equals to 200
+    request: 
+      url: https://api.zippopotam.us/us/80016
+      method: GET
+    response:
+      status_code: 200
+      

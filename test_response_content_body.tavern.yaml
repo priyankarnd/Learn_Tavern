@@ -1,0 +1,27 @@
+---
+test_name: Get location for US zip code 90210 and check response body content
+
+strict:
+  - headers:on
+  - json:off
+
+stages:
+  - name: Check that place name equals Beverly Hills
+    request:
+      url: http://api.zippopotam.us/us/90210
+      method: GET
+    response:
+      status_code: 200
+      json:
+        post code: "90210"
+        places:
+          - place name: Beverly Hills 
+            state: California
+        country abbreviation: "US"
+
+
+
+
+          
+        
+          

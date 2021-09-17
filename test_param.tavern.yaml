@@ -1,0 +1,26 @@
+test_name: Using parametrization in test 
+
+strict:
+  - headers:on
+  - json:off
+
+marks:
+  - parametrize:
+      key:
+        - country_code
+        - zip_code
+        - place_name
+      vals:
+        - [us, 12345, Schenectady]
+        - [ca, B2A, North Sydney South Central]
+        - [nl, 3825, Vathorst]
+
+stages:
+  - name: Verify place name in response body
+    request:
+      url: http://api.zippopotam.us/{country_code}/{zip_code}
+      method: GET
+    response:
+      json:
+        places:
+          - place name: "{place_name}"

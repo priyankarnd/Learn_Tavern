@@ -1,0 +1,9 @@
+---
+- name: login
+  request:
+    url: https://www.dropbox.com/login
+    json:
+      username: priyankar.roychowdhu@dish.com
+      password: ecetechnocrat1
+#  response:
+#    status_code: 200

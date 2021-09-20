@@ -1,0 +1,31 @@
+
+# Using built-in validator. The dict can have keys which are not present in the schema, and these can map to anything.
+# Usage: allowempty: True
+# See documentation here https://pykwalify.readthedocs.io/en/unstable/validation-rules.html#mapping
+
+
+---
+
+
+test_name: Using built-in validators and allowempty ex06
+stages:
+  - name: Make sure the response matches the given schema
+    request:
+      url: https://jsonplaceholder.typicode.com/posts/1
+      method: GET
+
+    response:
+      status_code: 200
+      verify_response_with:
+        function: tavern.testutils.helpers:validate_pykwalify
+        extra_kwargs:
+          schema:
+            type: map
+            allowempty: True
+            mapping:
+              id:
+                type: int
+                required: True
+              title:
+                type: any
+                required: True

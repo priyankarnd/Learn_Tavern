@@ -1,0 +1,37 @@
+---
+
+test_name: Using built-in validators
+stages:
+  - name: Make sure the response matches the given schema
+    request:
+      url: https://jsonplaceholder.typicode.com/posts/1
+      method: GET
+
+    response:
+      status_code: 200
+      verify_response_with:
+        function: tavern.testutils.helpers:validate_pykwalify
+        extra_kwargs:
+          schema:
+            type: map
+            mapping:
+              id:
+                type: int
+                required: True
+              title:
+                type: any
+                required: True
+              body:
+                type: any
+                required: True
+              userId:
+                type: int
+                required: True
+
+#  Expected
+#{
+#  id: 1,
+#  title: '[...]',
+#  body: '[...]',
+#  userId: 1
+#}

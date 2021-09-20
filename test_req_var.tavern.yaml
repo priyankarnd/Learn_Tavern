@@ -1,5 +1,5 @@
 ---
-test_name: Using request variables ex02
+test_name: Using request variables
 stages:
   - name: Create a resource, verify response json using request variables
     request:
